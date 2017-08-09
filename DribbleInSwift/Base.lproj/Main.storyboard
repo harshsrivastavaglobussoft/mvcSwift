@@ -40,12 +40,15 @@
                                     <segment title="Time"/>
                                     <segment title="Rebound"/>
                                 </segments>
+                                <connections>
+                                    <action selector="ChangeView:" destination="BYZ-38-t0r" eventType="valueChanged" id="UIg-52-47J"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05c-a2-FIX">
-                                <rect key="frame" x="0.0" y="108" width="0.0" height="559"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DGj-9x-Njs">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="559"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
                                 </subviews>
@@ -58,8 +61,8 @@
                                     <constraint firstAttribute="width" constant="375" id="ymr-jP-LqA"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRv-SH-qIr">
-                                <rect key="frame" x="-375" y="108" width="375" height="559"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRv-SH-qIr">
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bd3-ZD-2u3">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
@@ -75,10 +78,10 @@
                                     <constraint firstItem="bd3-ZD-2u3" firstAttribute="top" secondItem="yRv-SH-qIr" secondAttribute="top" id="oRp-pL-fId"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w8L-Fm-VXo">
+                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w8L-Fm-VXo">
                                 <rect key="frame" x="-375" y="108" width="0.0" height="559"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z8V-lj-tng">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z8V-lj-tng">
                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="559"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
@@ -115,8 +118,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="PopularTableView" destination="DGj-9x-Njs" id="J53-g9-KpT"/>
                         <outlet property="PopularView" destination="05c-a2-FIX" id="dVg-ZA-Ptm"/>
+                        <outlet property="ReboundTableView" destination="Z8V-lj-tng" id="50x-wi-Oom"/>
                         <outlet property="ReboundView" destination="w8L-Fm-VXo" id="Or5-Gl-bL0"/>
+                        <outlet property="TimeTableView" destination="bd3-ZD-2u3" id="Xpl-Vt-Qzu"/>
                         <outlet property="TimeView" destination="yRv-SH-qIr" id="Abz-Mc-ycx"/>
                         <outlet property="segmentController" destination="Top-Lw-pVe" id="mTn-Sh-E00"/>
                     </connections>
