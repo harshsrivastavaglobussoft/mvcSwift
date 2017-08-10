@@ -28,8 +28,7 @@ class HTTPRequest: NSObject {
             }
             let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             print("responseString = \(responseString!)")
-            
-            
+    
             // Convert server json response to NSDictionary/NSArray
             do {
                 let responseData = try JSONSerialization.jsonObject(with: data!, options: [JSONSerialization.ReadingOptions.allowFragments])
@@ -44,6 +43,4 @@ class HTTPRequest: NSObject {
         }
         task.resume()
     }
-    
-    
 }

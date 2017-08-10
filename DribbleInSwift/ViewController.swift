@@ -25,38 +25,63 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.forReboundTable()
+        self.forPopularTable()
+        self.forTimeTable()
     
+        
+        
         ReboundData.init().getDataForReboundTable { (data) in
-            self.ReboundDataArray=data
-            self.forReboundTable()
+
+            DispatchQueue.main.async {
+                self.ReboundDataArray=data
+                self.ReboundTableView.reloadData()
+            }
+          
         }
         
         PopularData.init().getDataForPopularTable { (data) in
-            self.PopualarDataArray=data
-            self.forPopularTable()
+
+            DispatchQueue.main.async {
+                self.PopualarDataArray=data
+                self.PopularTableView.reloadData()
+           }
         }
         
         TimeData.init().getDataForTimeTable { (data) in
-            self.TimeDataArray=data
-            self.forTimeTable()
+
+            DispatchQueue.main.async {
+                self.TimeDataArray=data
+                self.TimeTableView.reloadData()
+            }
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden=true
+    }
+    
     func forReboundTable() -> Void {
         self.ReboundTableView.delegate=self;
         self.ReboundTableView.dataSource=self;
-        self.ReboundTableView .reloadData()
+        self.ReboundTableView.backgroundColor=UIColor.gray
+        
+        
     }
     
     func forTimeTable() ->Void {
         self.TimeTableView.delegate=self
         self.TimeTableView.dataSource=self
-        self.TimeTableView.reloadData()
+        self.TimeTableView.backgroundColor=UIColor.brown
+        
     }
     
     func forPopularTable() -> Void {
         self.PopularTableView.dataSource=self
         self.PopularTableView.delegate=self
-        self.PopularTableView.reloadData()
+        self.PopularTableView.backgroundColor=UIColor.blue
+        
     }
     
     @IBAction func ChangeView(_ sender: Any) {
@@ -84,13 +109,28 @@ class ViewController: UIViewController {
 }
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView==self.PopularTableView {
+            if self.PopualarDataArray==nil {
+                return 0
+            }else{
             return self.PopualarDataArray.count
+            }
         }else if tableView==self.TimeTableView{
+            if self.TimeDataArray==nil{
+                return 0
+            }else{
             return self.TimeDataArray.count
+            }
         }else{
+            if self.ReboundDataArray==nil {
+                return 0
+            }else{
             return self.ReboundDataArray.count
+            }
         }
     }
     
@@ -99,45 +139,85 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = "cell"
+         let identifier = "cell"
         
-        var cell:CustomTableViewCell=(tableView.dequeueReusableCell(withIdentifier: identifier) as? CustomTableViewCell)!
-        if cell==nil {
-            tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: identifier)
-            cell = (tableView.dequeueReusableCell(withIdentifier: identifier) as? CustomTableViewCell)!
-        }
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: identifier)
+        
+        let cell:CustomTableViewCell=(tableView.dequeueReusableCell(withIdentifier: identifier) as? CustomTableViewCell)!
+        
         if tableView==self.PopularTableView {
             let dataDict = self.PopualarDataArray[indexPath.row] as! NSDictionary
             
-            let dataUser=[dataDict .object(forKey: "user")]as Any as!NSDictionary
+            let dataUser = dataDict["user"]as! NSDictionary
             
-            let name = [dataUser .object(forKey: "name")]
+            let name = dataUser["name"]as! NSString
             
-            let location = [dataUser .object(forKey: "location")]
+            let location = dataUser["location"]as! NSString
             
+            let ImageDict = dataDict["images"]as! NSDictionary
             
-             cell.picDetailsLabel.text="\(name)\(location)"
+            let ImageUrlString = ImageDict["teaser"]as! NSString
+            
+            //async downloading of image
+            DispatchQueue.global().async(execute: { () -> Void in
+                
+            let imageUrl: URL = URL.init(string: ImageUrlString as String)!
+            //converting it to nsdata
+            let data = NSData (contentsOf: imageUrl)
+             //getting it back to main thread
+            DispatchQueue.main.async{
+            cell.dribbleImageView.image = UIImage(data:data! as Data)
+            }
+                
+            })
+            
+            cell.picDetailsLabel.text="\(name)\(location)"
         }
         else if tableView==self.TimeTableView{
             let dataDict = self.TimeDataArray[indexPath.row] as! NSDictionary
             
-            let dataUser=[dataDict .object(forKey: "user")]as Any as!NSDictionary
+            let dataUser = dataDict["user"]as! NSDictionary
             
-            let name = [dataUser .object(forKey: "name")]
+            let name = dataUser["name"]as! NSString
             
-            let location = [dataUser .object(forKey: "location")]
+            let location = dataUser["location"]as! NSString
             
+            let ImageDict = dataDict["images"]as! NSDictionary
+            
+            let ImageUrlString = ImageDict["teaser"]as! NSString
+            
+            
+            DispatchQueue.global().async(execute: { () -> Void in
+
+            let imageUrl: URL = URL.init(string: ImageUrlString as String)!
+            let data = NSData (contentsOf: imageUrl)
+                DispatchQueue.main.async{
+            cell.dribbleImageView.image = UIImage(data:data! as Data)
+                }
+            })
             
             cell.picDetailsLabel.text="\(name)\(location)"
         }else{
             let dataDict = self.ReboundDataArray[indexPath.row] as! NSDictionary
             
-            let dataUser=[dataDict .object(forKey: "user")]as Any as!NSDictionary
+            let dataUser = dataDict["user"]as! NSDictionary
             
-            let name = [dataUser .object(forKey: "name")]
+            let name = dataUser["name"]as! NSString
             
-            let location = [dataUser .object(forKey: "location")]
+            let location = dataUser["location"]as! NSString
             
+            let ImageDict = dataDict["images"]as! NSDictionary
+            
+            let ImageUrlString = ImageDict["teaser"]as! NSString
+            
+            DispatchQueue.global().async(execute: { () -> Void in
+                
+            let imageUrl: URL = URL.init(string: ImageUrlString as String)!
+            let data = NSData (contentsOf: imageUrl)
+                DispatchQueue.main.async{
+            cell.dribbleImageView.image = UIImage(data:data! as Data)
+                }
+            })
             
             cell.picDetailsLabel.text="\(name)\(location)"
         }
@@ -146,5 +226,42 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
       return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let imageUrl:URL!
+        
+        if tableView==self.PopularTableView {
+            let dataDict = self.PopualarDataArray .object(at: indexPath.row)as! NSDictionary
+            let imageDict = dataDict["images"]as! NSDictionary
+            
+            let imageUrlString = imageDict["hidpi"]as! NSString
+
+            imageUrl = URL.init(string: imageUrlString as String)!
+            
+        }else if tableView==self.ReboundTableView{
+            let dataDict = self.ReboundDataArray .object(at: indexPath.row)as! NSDictionary
+            let imageDict = dataDict["images"]as! NSDictionary
+            
+            let imageUrlString = imageDict["hidpi"]as! NSString
+            
+            imageUrl = URL.init(string: imageUrlString as String)!
+        }else{
+            let dataDict = self.TimeDataArray .object(at: indexPath.row)as! NSDictionary
+            let imageDict = dataDict["images"]as! NSDictionary
+            
+            let imageUrlString = imageDict["hidpi"]as! NSString
+            
+            imageUrl = URL.init(string: imageUrlString as String)!
+        }
+        // Register Nib
+        let photoView = PhotoViewController(nibName: "PhotoViewController", bundle: nil)
+        photoView.imageUrl=imageUrl
+        
+        self.navigationController?.navigationBar.isHidden=false
+        //calling navigaton controller
+        // setting naviagtion title
+        self.navigationController?.navigationBar.topItem?.title="Home View"
+        
+        self.navigationController?.pushViewController(photoView, animated: true)
+        
+    }
 }

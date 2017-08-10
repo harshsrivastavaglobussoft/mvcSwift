@@ -12,9 +12,20 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        let nav1 = UINavigationController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ViewController")
+        nav1.navigationBar.isHidden=true
+        nav1.viewControllers = [controller]
+        self.window!.rootViewController = nav1
+        self.window?.makeKeyAndVisible()
+
+        
+        
         // Override point for customization after application launch.
         return true
     }

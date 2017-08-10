@@ -20,6 +20,7 @@
 		953133D41F389C420067DB3A /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953133D21F389C420067DB3A /* PhotoViewController.xib */; };
 		953133D81F389F720067DB3A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953133D71F389F720067DB3A /* Configuration.swift */; };
 		954953881F39CF19000076E4 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954953871F39CF19000076E4 /* HTTPRequest.swift */; };
+		955000951F3C6D7900AF97AE /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955000941F3C6D7900AF97AE /* DownloadManager.swift */; };
 		95DEA4461F3ADEB000209BD1 /* Apihelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DEA4451F3ADEB000209BD1 /* Apihelper.swift */; };
 		95DEA4491F3B14FF00209BD1 /* PopularData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DEA4481F3B14FF00209BD1 /* PopularData.swift */; };
 		95DEA44B1F3B189200209BD1 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DEA44A1F3B189200209BD1 /* TimeData.swift */; };
@@ -63,6 +64,7 @@
 		953133D21F389C420067DB3A /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		953133D71F389F720067DB3A /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		954953871F39CF19000076E4 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		955000941F3C6D7900AF97AE /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		95DEA4451F3ADEB000209BD1 /* Apihelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Apihelper.swift; sourceTree = "<group>"; };
 		95DEA4481F3B14FF00209BD1 /* PopularData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularData.swift; sourceTree = "<group>"; };
 		95DEA44A1F3B189200209BD1 /* TimeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		953133911F388F550067DB3A = {
 			isa = PBXGroup;
 			children = (
+				955000931F3C6D6600AF97AE /* DownloadManager */,
 				95DEA4471F3B0C9400209BD1 /* Model */,
 				95DEA4441F3ADE9700209BD1 /* ApiHelper */,
 				954953861F39CEEF000076E4 /* HTTPRequest */,
@@ -193,6 +196,14 @@
 			name = HTTPRequest;
 			sourceTree = "<group>";
 		};
+		955000931F3C6D6600AF97AE /* DownloadManager */ = {
+			isa = PBXGroup;
+			children = (
+				955000941F3C6D7900AF97AE /* DownloadManager.swift */,
+			);
+			path = DownloadManager;
+			sourceTree = "<group>";
+		};
 		95DEA4441F3ADE9700209BD1 /* ApiHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,7 +291,7 @@
 					953133991F388F550067DB3A = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = JDGV77HJK6;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					953133AD1F388F560067DB3A = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -351,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				953133CE1F3893C40067DB3A /* CustomTableViewCell.swift in Sources */,
+				955000951F3C6D7900AF97AE /* DownloadManager.swift in Sources */,
 				95DEA44B1F3B189200209BD1 /* TimeData.swift in Sources */,
 				95DEA4491F3B14FF00209BD1 /* PopularData.swift in Sources */,
 				95DEA4461F3ADEB000209BD1 /* Apihelper.swift in Sources */,
@@ -515,8 +527,10 @@
 				DEVELOPMENT_TEAM = JDGV77HJK6;
 				INFOPLIST_FILE = DribbleInSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = globussoft.DribbleInSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.globussoft.GroupChatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8be33794-3d39-4315-9d0c-8d63480ad027";
+				PROVISIONING_PROFILE_SPECIFIER = "GroupAppDevNew(24/05/17)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -528,8 +542,10 @@
 				DEVELOPMENT_TEAM = JDGV77HJK6;
 				INFOPLIST_FILE = DribbleInSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = globussoft.DribbleInSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.globussoft.GroupChatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8be33794-3d39-4315-9d0c-8d63480ad027";
+				PROVISIONING_PROFILE_SPECIFIER = "GroupAppDevNew(24/05/17)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
