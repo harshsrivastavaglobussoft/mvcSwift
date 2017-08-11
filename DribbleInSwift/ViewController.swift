@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         self.forTimeTable()
     
         
-        
+        //calling the model
         ReboundData.init().getDataForReboundTable { (data) in
 
             DispatchQueue.main.async {
@@ -62,28 +62,23 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden=true
     }
     
+    //calling tableView Delegates
     func forReboundTable() -> Void {
         self.ReboundTableView.delegate=self;
         self.ReboundTableView.dataSource=self;
-        self.ReboundTableView.backgroundColor=UIColor.gray
-        
-        
     }
     
     func forTimeTable() ->Void {
         self.TimeTableView.delegate=self
         self.TimeTableView.dataSource=self
-        self.TimeTableView.backgroundColor=UIColor.brown
-        
     }
     
     func forPopularTable() -> Void {
         self.PopularTableView.dataSource=self
         self.PopularTableView.delegate=self
-        self.PopularTableView.backgroundColor=UIColor.blue
-        
     }
     
+    //segment View Action
     @IBAction func ChangeView(_ sender: Any) {
         switch self.segmentController.selectedSegmentIndex
         {
@@ -108,6 +103,8 @@ class ViewController: UIViewController {
         
 }
 }
+
+//table view delegates and datasource
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
     

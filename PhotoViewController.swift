@@ -24,6 +24,7 @@ class PhotoViewController: UIViewController {
         self.createImage()
         
     }
+    //adding the notifications
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(
             self,
@@ -59,6 +60,7 @@ class PhotoViewController: UIViewController {
         DownloadManager.sharedInstance.startDownload(url: self.imageUrl!)
     }
     
+    //updating the UI progress bar
     func updateProgressBar(sender:NSNotification) -> Void {
         let data:NSDictionary = sender.object as! NSDictionary
         let task:URLSessionDownloadTask = data["downloadTask"] as! URLSessionDownloadTask
@@ -72,6 +74,7 @@ class PhotoViewController: UIViewController {
         }
     }
     
+    //removing the progress on download completion
     func removerProgressBar(sender:NSNotification) -> Void {
         self.progressView.isHidden=true
     }
@@ -81,6 +84,7 @@ class PhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //removing the observer
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "upadteProgress"), object: nil)
         
