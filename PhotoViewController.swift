@@ -13,15 +13,18 @@ class PhotoViewController: UIViewController {
     @IBOutlet var photoImageView: UIImageView!
     @IBOutlet var downloadButton: UIButton!
     var imageUrl:URL!
-    @IBOutlet var indicatorView: UIActivityIndicatorView!
     
     @IBOutlet var progressView: UIProgressView!
+    var fiieExtension:String!
+    
     override func viewDidLoad() {
 
 
         super.viewDidLoad()
         self.title="Photo View"
+        self.fiieExtension=self.imageUrl.pathExtension
         self.createImage()
+
         
     }
     //adding the notifications
@@ -42,18 +45,12 @@ class PhotoViewController: UIViewController {
     
     //add image to image View
     func createImage() -> Void {
-        self.indicatorView.isHidden=false
-        self.indicatorView.startAnimating()
-        DispatchQueue.global().async(execute: { () -> Void in
-            
-            let data = NSData (contentsOf: self.imageUrl)
-            DispatchQueue.main.async{
-                self.indicatorView.stopAnimating()
-                self.indicatorView.isHidden=true
-                self.photoImageView.image = UIImage(data:data! as Data)
-            }
-        })
-    }
+    self.photoImageView.sd_setShowActivityIndicatorView(true)
+        
+    self.photoImageView.sd_setIndicatorStyle(.gray)
+        
+    self.photoImageView .sd_setImage(with: self.imageUrl)
+}
     
     //download button Action
     @IBAction func downloadButtonAction(_ sender: Any) {

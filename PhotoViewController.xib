@@ -12,8 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoViewController" customModule="DribbleInSwift" customModuleProvider="target">
             <connections>
                 <outlet property="downloadButton" destination="wwg-Bg-WRQ" id="YDv-nA-fuk"/>
-                <outlet property="indicatorView" destination="ijj-Av-XTq" id="8It-E4-fBN"/>
-                <outlet property="photoImageView" destination="sfo-SY-WnN" id="hcH-gn-giD"/>
+                <outlet property="photoImageView" destination="sfo-SY-WnN" id="8qn-MX-9Jn"/>
                 <outlet property="progressView" destination="sZ6-Qq-CUR" id="mIm-N9-jgW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,7 +25,7 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JDY-qA-rJg">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sfo-SY-WnN">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sfo-SY-WnN" customClass="FLAnimatedImageView">
                             <rect key="frame" x="0.0" y="44" width="374" height="375"/>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -46,15 +45,8 @@
                                 <action selector="downloadButtonAction:" destination="-1" eventType="touchUpInside" id="l6Z-zl-K69"/>
                             </connections>
                         </button>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ijj-Av-XTq">
-                            <rect key="frame" x="157" y="201" width="60" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="Xk3-BL-0xH"/>
-                                <constraint firstAttribute="width" constant="60" id="qCx-zm-zHy"/>
-                            </constraints>
-                        </activityIndicatorView>
                         <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sZ6-Qq-CUR">
-                            <rect key="frame" x="87" y="228.5" width="200" height="5"/>
+                            <rect key="frame" x="87" y="229" width="200" height="5"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="5" id="3wW-ol-NuQ"/>
                                 <constraint firstAttribute="width" constant="200" id="udI-WE-Jac"/>
@@ -65,15 +57,13 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="sfo-SY-WnN" secondAttribute="trailing" id="Fbz-Ln-WPP"/>
+                        <constraint firstItem="sZ6-Qq-CUR" firstAttribute="top" secondItem="JDY-qA-rJg" secondAttribute="top" constant="229" id="GC3-LS-V6M"/>
                         <constraint firstItem="wwg-Bg-WRQ" firstAttribute="leading" secondItem="JDY-qA-rJg" secondAttribute="leading" constant="100" id="LJh-TX-QJY"/>
-                        <constraint firstItem="sZ6-Qq-CUR" firstAttribute="centerY" secondItem="ijj-Av-XTq" secondAttribute="centerY" id="Ofc-cb-3Ca"/>
-                        <constraint firstItem="sZ6-Qq-CUR" firstAttribute="centerX" secondItem="ijj-Av-XTq" secondAttribute="centerX" id="RpQ-Ng-mtP"/>
                         <constraint firstItem="sfo-SY-WnN" firstAttribute="centerX" secondItem="JDY-qA-rJg" secondAttribute="centerX" id="UJo-zA-RUT"/>
+                        <constraint firstItem="sZ6-Qq-CUR" firstAttribute="centerX" secondItem="wwg-Bg-WRQ" secondAttribute="centerX" id="egu-4K-nR4"/>
                         <constraint firstItem="sfo-SY-WnN" firstAttribute="top" secondItem="JDY-qA-rJg" secondAttribute="top" constant="44" id="gMN-mG-DsL"/>
-                        <constraint firstItem="ijj-Av-XTq" firstAttribute="centerX" secondItem="wwg-Bg-WRQ" secondAttribute="centerX" id="h3K-Cn-gBv"/>
                         <constraint firstAttribute="trailing" secondItem="wwg-Bg-WRQ" secondAttribute="trailing" constant="100" id="hl0-d9-MKS"/>
                         <constraint firstItem="sfo-SY-WnN" firstAttribute="leading" secondItem="JDY-qA-rJg" secondAttribute="leading" id="kI5-fv-hzr"/>
-                        <constraint firstItem="ijj-Av-XTq" firstAttribute="centerY" secondItem="sfo-SY-WnN" secondAttribute="centerY" id="lUp-BO-vGA"/>
                         <constraint firstAttribute="bottom" secondItem="sfo-SY-WnN" secondAttribute="bottom" constant="248" id="rot-cM-mOV"/>
                         <constraint firstItem="wwg-Bg-WRQ" firstAttribute="top" secondItem="sfo-SY-WnN" secondAttribute="bottom" constant="50" id="v56-Hm-ULH"/>
                     </constraints>

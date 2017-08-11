@@ -1,0 +1,6 @@
+framework module Pods_DribbleInSwiftUITests {
+  umbrella header "Pods-DribbleInSwiftUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
