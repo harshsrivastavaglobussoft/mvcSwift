@@ -8,13 +8,8 @@
 
 import UIKit
 import Foundation
-class DownloadManager: NSObject,URLSessionDelegate{
+class DownloadManager: NSObject,URLSessionDelegate,URLSessionDownloadDelegate{
     
-//    private override init() {
-//        
-//        class DownLoadSingleton {
-//        }
-//    }
     
     static let sharedInstance: DownloadManager = {
         let instance = DownloadManager()
@@ -27,7 +22,7 @@ class DownloadManager: NSObject,URLSessionDelegate{
     var task:URLSessionDownloadTask!
     
     func startDownload(url:URL) -> Void {
-        let queue:OperationQueue=OperationQueue.init()
+        let queue:OperationQueue=OperationQueue()
         queue.maxConcurrentOperationCount=5
         self.accessQueue.sync() {
             self.activeUrlString = url
@@ -37,16 +32,16 @@ class DownloadManager: NSObject,URLSessionDelegate{
             
             self.accessQueue.sync() {
                 
-                self.session = URLSession.init(configuration: configuration, delegate: self as? URLSessionDelegate, delegateQueue: queue)
+                self.session = URLSession.init(configuration: configuration as URLSessionConfiguration!, delegate: self, delegateQueue: OperationQueue.main)
                 
             }
-            let request:URLRequest=URLRequest.init(url: url)
+            let request:URLRequest=URLRequest.init(url: url as URL!)
             self.accessQueue.sync() {
-                
-                self.task = self.session.downloadTask(with: request)
+                self.task = self.session.downloadTask(with: request as URLRequest!)
+                self.task!.resume()
             }
             
-            self.task.resume()
+         
         }
     }
     
@@ -54,13 +49,45 @@ class DownloadManager: NSObject,URLSessionDelegate{
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64){
         
-        let percentDone:Float = Float(totalBytesWritten/totalBytesExpectedToWrite)
+        let bytesWritten:Double=Double(totalBytesWritten)
+        
+        let bytesExpected:Double = Double(totalBytesExpectedToWrite)
+        
+        let percentDone:Float = Float(bytesWritten/bytesExpected)
         
         print(percentDone)
+        DispatchQueue.main.async{
+            let notificationDictionary:NSMutableDictionary=NSMutableDictionary.init()
+            notificationDictionary.setValue(percentDone, forKey:"percentDone" )
+            notificationDictionary.setValue(downloadTask, forKey: "downloadTask")
+            
+            NotificationCenter .default.post(name: NSNotification.Name(rawValue: "updateProgress"), object: notificationDictionary, userInfo: nil)
+        }
+        
+        
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL){
+        let mediaData=NSData.init(contentsOf: location)
+        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask , true)
+        let documentDirectory = paths[0]
+        print("-----\(paths)")
         
+        let timeStamp:String=String(describing: NSDate())
+        let mediaName="image\(timeStamp)"
         
+        let mediaExtension="JPG"
+        
+        let filePath="\(documentDirectory)\(mediaName)\(mediaExtension)"
+        
+        mediaData? .write(toFile: filePath, atomically: true)
+        
+        UIImageWriteToSavedPhotosAlbum(UIImage(data:mediaData! as Data)!, nil, nil, nil)
+        
+        DispatchQueue.main.async{
+            self.activeUrlString=nil
+            self.session=nil
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removeProgress"), object: nil, userInfo: nil)
+        }
     }
 }
