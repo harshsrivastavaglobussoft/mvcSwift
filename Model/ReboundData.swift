@@ -11,7 +11,8 @@ import UIKit
 class ReboundData: NSObject {
     func getDataForReboundTable(callback: @escaping (NSArray) -> Void) -> Void {
         Apihelper.init() .getDataForRebound { (data) in
-           callback(data)
+            let finalData:NSArray = MainModel.init().convertArrayToModel(dataArray: data)
+            callback(finalData)
         }
         
     }

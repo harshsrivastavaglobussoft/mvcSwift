@@ -68,6 +68,8 @@ class DownloadManager: NSObject,URLSessionDelegate,URLSessionDownloadDelegate{
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL){
+        let Url:URL = (downloadTask.currentRequest?.url)!
+        
         let mediaData=NSData.init(contentsOf: location)
         var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask , true)
         let documentDirectory = paths[0]
@@ -76,7 +78,7 @@ class DownloadManager: NSObject,URLSessionDelegate,URLSessionDownloadDelegate{
         let timeStamp:String=String(describing: NSDate())
         let mediaName="image\(timeStamp)"
         
-        let mediaExtension="JPG"
+        let mediaExtension=Url .pathExtension
         
         let filePath="\(documentDirectory)\(mediaName)\(mediaExtension)"
         

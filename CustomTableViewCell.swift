@@ -12,9 +12,10 @@ class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet var dribbleImageView: UIImageView!
     @IBOutlet var picDetailsLabel: UILabel!
-    
+    @IBOutlet var profilePicImageView: UIImageView!
     
     override func awakeFromNib() {
+
         super.awakeFromNib()
         // Initialization code
     }

@@ -11,7 +11,8 @@ class PopularData: NSObject {
     
     func getDataForPopularTable(callback: @escaping (NSArray) -> Void) -> Void {
         Apihelper.init().dataForPopularTable { (dataPopular) in
-            callback(dataPopular)
+            let finalData:NSArray = MainModel.init().convertArrayToModel(dataArray: dataPopular)
+            callback(finalData)
         }
     }
 }

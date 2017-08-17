@@ -9,13 +9,13 @@
 import UIKit
 
 class Apihelper: NSObject {
+    
     func getDataForRebound(callback: @escaping (NSArray) -> Void) -> Void {
-        Configuration.Singleton.sharedInstance.setData()
-        let  URL = "\(Configuration.Singleton.sharedInstance.basicUrl!)\(Configuration.Singleton.sharedInstance.reboundToken!)"
+        let url="\(Configuration.BASIC_URL)\(Configuration.REBOUNDNAME)\(Configuration.ACCESS_TOKEN)"
         
-        print(URL)
+        print(url)
         
-      HTTPRequest.init().getRequestWithUrlString(urlString: URL) { (response) in
+      HTTPRequest.init().getRequestWithUrlString(urlString: url) { (response) in
         
              if response is NSArray {
                 print(response)
@@ -29,8 +29,8 @@ class Apihelper: NSObject {
     
     func dataForTimeTable(callback: @escaping (NSArray) -> Void) -> Void {
         
-        Configuration.Singleton.sharedInstance.setData()
-        let url = "\(Configuration.Singleton.sharedInstance.basicUrl!)\(Configuration.Singleton.sharedInstance.timeToken!)"
+        let url = "\(Configuration.BASIC_URL)\(Configuration.TIME_NAME)\(Configuration.ACCESS_TOKEN)"
+        
         
         HTTPRequest.init().getRequestWithUrlString(urlString: url) { (response) in
             
@@ -42,13 +42,14 @@ class Apihelper: NSObject {
     }
     
     func dataForPopularTable(callback: @escaping (NSArray) -> Void) -> Void{
-    
-        Configuration.Singleton.sharedInstance.setData()
-        let url = "\(Configuration.Singleton.sharedInstance.basicUrl!)\(Configuration.Singleton.sharedInstance.popularToken!)"
+        let url = "\(Configuration.BASIC_URL)\(Configuration.POPULAR_NAME)\(Configuration.ACCESS_TOKEN)"
+        
+        
         HTTPRequest.init().getRequestWithUrlString(urlString:url) { (response) in
             if response is NSArray{
                 print(response)
                 callback(response as! NSArray)
+                
             }
         }
         

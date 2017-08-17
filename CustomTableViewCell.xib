@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="249.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="plg-vp-YDM">
@@ -28,6 +28,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NhH-FD-ieu">
+                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Xgi-5g-4on"/>
+                            <constraint firstAttribute="height" constant="40" id="Zmc-0o-6bb"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="7L2-lY-w21" secondAttribute="trailing" id="22F-4Q-nF4"/>
@@ -35,14 +42,17 @@
                     <constraint firstItem="plg-vp-YDM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cCH-gS-Ubq"/>
                     <constraint firstItem="plg-vp-YDM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dk8-xH-L3E"/>
                     <constraint firstAttribute="trailing" secondItem="plg-vp-YDM" secondAttribute="trailing" id="duR-QN-0aA"/>
+                    <constraint firstItem="NhH-FD-ieu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="egN-k8-yN5"/>
                     <constraint firstItem="7L2-lY-w21" firstAttribute="top" secondItem="plg-vp-YDM" secondAttribute="bottom" id="fKH-qs-A2O"/>
                     <constraint firstItem="7L2-lY-w21" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tQ8-8H-Toq"/>
                     <constraint firstAttribute="bottom" secondItem="plg-vp-YDM" secondAttribute="bottom" constant="70" id="wQI-Ek-lnJ"/>
+                    <constraint firstItem="NhH-FD-ieu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="xOq-Hh-56k"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="dribbleImageView" destination="plg-vp-YDM" id="ZiU-Qt-X87"/>
                 <outlet property="picDetailsLabel" destination="7L2-lY-w21" id="ALv-jT-hY1"/>
+                <outlet property="profilePicImageView" destination="NhH-FD-ieu" id="zHr-jp-SaX"/>
             </connections>
             <point key="canvasLocation" x="84" y="-40"/>
         </tableViewCell>

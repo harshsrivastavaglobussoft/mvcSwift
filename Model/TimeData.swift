@@ -11,7 +11,8 @@ import UIKit
 class TimeData: NSObject {
     func getDataForTimeTable(callback: @escaping (NSArray) -> Void) -> Void {
         Apihelper.init().dataForTimeTable { (dataTime) in
-            callback(dataTime)
+            let finalData:NSArray = MainModel.init().convertArrayToModel(dataArray: dataTime)
+            callback(finalData)
         }
     }
 }

@@ -24,6 +24,9 @@
 		953133D81F389F720067DB3A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953133D71F389F720067DB3A /* Configuration.swift */; };
 		954953881F39CF19000076E4 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954953871F39CF19000076E4 /* HTTPRequest.swift */; };
 		955000951F3C6D7900AF97AE /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955000941F3C6D7900AF97AE /* DownloadManager.swift */; };
+		95BBFF3C1F45804600202705 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBFF391F45804600202705 /* ImageModel.swift */; };
+		95BBFF3D1F45804600202705 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBFF3A1F45804600202705 /* MainModel.swift */; };
+		95BBFF3E1F45804600202705 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBFF3B1F45804600202705 /* UserModel.swift */; };
 		95DEA4461F3ADEB000209BD1 /* Apihelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DEA4451F3ADEB000209BD1 /* Apihelper.swift */; };
 		95DEA4491F3B14FF00209BD1 /* PopularData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DEA4481F3B14FF00209BD1 /* PopularData.swift */; };
 		95DEA44B1F3B189200209BD1 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DEA44A1F3B189200209BD1 /* TimeData.swift */; };
@@ -73,6 +76,9 @@
 		954953871F39CF19000076E4 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		955000941F3C6D7900AF97AE /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		95B6AC311F3DC9C400B5DCE6 /* DribbleInSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DribbleInSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		95BBFF391F45804600202705 /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		95BBFF3A1F45804600202705 /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		95BBFF3B1F45804600202705 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		95DEA4451F3ADEB000209BD1 /* Apihelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Apihelper.swift; sourceTree = "<group>"; };
 		95DEA4481F3B14FF00209BD1 /* PopularData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularData.swift; sourceTree = "<group>"; };
 		95DEA44A1F3B189200209BD1 /* TimeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
@@ -257,6 +263,9 @@
 		95DEA4471F3B0C9400209BD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				95BBFF391F45804600202705 /* ImageModel.swift */,
+				95BBFF3A1F45804600202705 /* MainModel.swift */,
+				95BBFF3B1F45804600202705 /* UserModel.swift */,
 				95DEA4481F3B14FF00209BD1 /* PopularData.swift */,
 				95DEA44A1F3B189200209BD1 /* TimeData.swift */,
 				95DEA44C1F3B18A400209BD1 /* ReboundData.swift */,
@@ -552,12 +561,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				953133CE1F3893C40067DB3A /* CustomTableViewCell.swift in Sources */,
+				95BBFF3D1F45804600202705 /* MainModel.swift in Sources */,
 				955000951F3C6D7900AF97AE /* DownloadManager.swift in Sources */,
 				95DEA44B1F3B189200209BD1 /* TimeData.swift in Sources */,
 				95DEA4491F3B14FF00209BD1 /* PopularData.swift in Sources */,
 				95DEA4461F3ADEB000209BD1 /* Apihelper.swift in Sources */,
 				953133D81F389F720067DB3A /* Configuration.swift in Sources */,
 				953133D31F389C420067DB3A /* PhotoViewController.swift in Sources */,
+				95BBFF3E1F45804600202705 /* UserModel.swift in Sources */,
+				95BBFF3C1F45804600202705 /* ImageModel.swift in Sources */,
 				954953881F39CF19000076E4 /* HTTPRequest.swift in Sources */,
 				95DEA44D1F3B18A400209BD1 /* ReboundData.swift in Sources */,
 				953133A01F388F560067DB3A /* ViewController.swift in Sources */,

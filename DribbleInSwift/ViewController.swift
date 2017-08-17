@@ -143,80 +143,79 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell:CustomTableViewCell=(tableView.dequeueReusableCell(withIdentifier: identifier) as? CustomTableViewCell)!
         
         if tableView==self.PopularTableView {
-            let dataDict = self.PopualarDataArray[indexPath.row] as! NSDictionary
+            var dataModel:MainModel!
+            dataModel = self.PopualarDataArray[indexPath.row] as! MainModel
             
-            let dataUser = dataDict["user"]as! NSDictionary
+            let name = dataModel.user.name
             
-            let name = dataUser["name"]as! NSString
+            let location = dataModel.user.location
             
-            let location = dataUser["location"]as! NSString
+            let avtarUrlString = dataModel.user.avatar_url
+            let avatarUrl = URL.init(string: avtarUrlString! as String)
             
-            let ImageDict = dataDict["images"]as! NSDictionary
             
-            let ImageUrlString = ImageDict["teaser"]as! NSString
+            let ImageUrlString = dataModel.images.normal
+            let imageUrl = URL.init(string: ImageUrlString! as String)
             
-            //async downloading of image
-            DispatchQueue.global().async(execute: { () -> Void in
-                
-            let imageUrl: URL = URL.init(string: ImageUrlString as String)!
-            //converting it to nsdata
-            let data = NSData (contentsOf: imageUrl)
-             //getting it back to main thread
-            DispatchQueue.main.async{
-            cell.dribbleImageView.image = UIImage(data:data! as Data)
-            }
-                
-            })
+            cell.profilePicImageView.layer.cornerRadius=cell.profilePicImageView.frame.size.height/2
+            cell.profilePicImageView.layer.masksToBounds=true
+            cell.profilePicImageView .sd_setImage(with: avatarUrl)
             
-            cell.picDetailsLabel.text="\(name)\(location)"
+            cell.dribbleImageView.sd_setShowActivityIndicatorView(true)
+            cell.dribbleImageView.sd_setIndicatorStyle(.gray)
+            cell.dribbleImageView .sd_setImage(with: imageUrl)
+            
+            cell.picDetailsLabel.text="\(name!)\(location!)"
+
         }
         else if tableView==self.TimeTableView{
-            let dataDict = self.TimeDataArray[indexPath.row] as! NSDictionary
+            var dataModel:MainModel!
+            dataModel = self.TimeDataArray[indexPath.row] as! MainModel
             
-            let dataUser = dataDict["user"]as! NSDictionary
+            let name = dataModel.user.name
             
-            let name = dataUser["name"]as! NSString
+            let location = dataModel.user.location
             
-            let location = dataUser["location"]as! NSString
-            
-            let ImageDict = dataDict["images"]as! NSDictionary
-            
-            let ImageUrlString = ImageDict["teaser"]as! NSString
+            let avtarUrlString = dataModel.user.avatar_url
+            let avatarUrl = URL.init(string: avtarUrlString! as String)
             
             
-            DispatchQueue.global().async(execute: { () -> Void in
-
-            let imageUrl: URL = URL.init(string: ImageUrlString as String)!
-            let data = NSData (contentsOf: imageUrl)
-                DispatchQueue.main.async{
-            cell.dribbleImageView.image = UIImage(data:data! as Data)
-                }
-            })
+            let ImageUrlString = dataModel.images.normal
+            let imageUrl = URL.init(string: ImageUrlString! as String)
             
-            cell.picDetailsLabel.text="\(name)\(location)"
+            cell.profilePicImageView.layer.cornerRadius=cell.profilePicImageView.frame.size.height/2
+            cell.profilePicImageView.layer.masksToBounds=true
+            cell.profilePicImageView .sd_setImage(with: avatarUrl)
+            
+            cell.dribbleImageView.sd_setShowActivityIndicatorView(true)
+            cell.dribbleImageView.sd_setIndicatorStyle(.gray)
+            cell.dribbleImageView .sd_setImage(with: imageUrl)
+            
+            cell.picDetailsLabel.text="\(name!)\(location!)"
         }else{
-            let dataDict = self.ReboundDataArray[indexPath.row] as! NSDictionary
+            var dataModel:MainModel!
+            dataModel = self.ReboundDataArray[indexPath.row] as! MainModel
             
-            let dataUser = dataDict["user"]as! NSDictionary
+            let name = dataModel.user.name
             
-            let name = dataUser["name"]as! NSString
+            let location = dataModel.user.location
             
-            let location = dataUser["location"]as! NSString
+            let avtarUrlString = dataModel.user.avatar_url
+            let avatarUrl = URL.init(string: avtarUrlString! as String)
             
-            let ImageDict = dataDict["images"]as! NSDictionary
             
-            let ImageUrlString = ImageDict["teaser"]as! NSString
+            let ImageUrlString = dataModel.images.normal
+            let imageUrl = URL.init(string: ImageUrlString! as String)
             
-            DispatchQueue.global().async(execute: { () -> Void in
-                
-            let imageUrl: URL = URL.init(string: ImageUrlString as String)!
-            let data = NSData (contentsOf: imageUrl)
-                DispatchQueue.main.async{
-            cell.dribbleImageView.image = UIImage(data:data! as Data)
-                }
-            })
+            cell.profilePicImageView.layer.cornerRadius=cell.profilePicImageView.frame.size.height/2
+            cell.profilePicImageView.layer.masksToBounds=true
+            cell.profilePicImageView .sd_setImage(with: avatarUrl)
             
-            cell.picDetailsLabel.text="\(name)\(location)"
+            cell.dribbleImageView.sd_setShowActivityIndicatorView(true)
+            cell.dribbleImageView.sd_setIndicatorStyle(.gray)
+            cell.dribbleImageView .sd_setImage(with: imageUrl)
+            
+            cell.picDetailsLabel.text="\(name!)\(location!)"
         }
         
         
@@ -227,25 +226,22 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let imageUrl:URL!
         
         if tableView==self.PopularTableView {
-            let dataDict = self.PopualarDataArray .object(at: indexPath.row)as! NSDictionary
-            let imageDict = dataDict["images"]as! NSDictionary
+            let selectedData = self.PopualarDataArray .object(at: indexPath.row)as! MainModel
             
-            let imageUrlString = imageDict["hidpi"]as! NSString
-
+            let imageUrlString:NSString = selectedData.images.hidpi!
+            
             imageUrl = URL.init(string: imageUrlString as String)!
             
         }else if tableView==self.ReboundTableView{
-            let dataDict = self.ReboundDataArray .object(at: indexPath.row)as! NSDictionary
-            let imageDict = dataDict["images"]as! NSDictionary
+            let selectedData = self.ReboundDataArray .object(at: indexPath.row)as! MainModel
             
-            let imageUrlString = imageDict["hidpi"]as! NSString
+            let imageUrlString = selectedData.images.hidpi!
             
             imageUrl = URL.init(string: imageUrlString as String)!
         }else{
-            let dataDict = self.TimeDataArray .object(at: indexPath.row)as! NSDictionary
-            let imageDict = dataDict["images"]as! NSDictionary
+            let selectedData = self.TimeDataArray .object(at: indexPath.row)as! MainModel
             
-            let imageUrlString = imageDict["hidpi"]as! NSString
+            let imageUrlString = selectedData.images.hidpi!
             
             imageUrl = URL.init(string: imageUrlString as String)!
         }
